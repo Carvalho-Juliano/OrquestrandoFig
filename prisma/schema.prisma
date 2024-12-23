@@ -12,3 +12,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Figurino {
+  Id         Int      @id @default(autoincrement())
+  nome       String   @db.VarChar(255)
+  descricao  String?
+  tamanho    String   @db.VarChar(155)
+  quantidade Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Cliente {
+  id        Int      @id @default(autoincrement())
+  nome      String   @db.VarChar(255)
+  email     String?  @db.VarChar(255)
+  telefone  String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
