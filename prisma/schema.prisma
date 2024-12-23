@@ -14,20 +14,33 @@ datasource db {
 }
 
 model Figurino {
-  Id         Int      @id @default(autoincrement())
-  nome       String   @db.VarChar(255)
-  descricao  String?
-  tamanho    String   @db.VarChar(155)
-  quantidade Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id          Int          @id @default(autoincrement())
+  nome        String       @db.VarChar(255)
+  descricao   String?
+  tamanho     String       @db.VarChar(50)
+  quantidade  Int
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  emprestimos Emprestimo[]
 }
 
 model Cliente {
-  id        Int      @id @default(autoincrement())
-  nome      String   @db.VarChar(255)
-  email     String?  @db.VarChar(255)
-  telefone  String   @db.VarChar(255)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int          @id @default(autoincrement())
+  nome        String       @db.VarChar(255)
+  email       String       @db.VarChar(255)
+  telefone    String       @db.VarChar(255)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  emprestimos Emprestimo[]
+}
+
+model Emprestimo {
+  id         Int      @id @default(autoincrement())
+  figurinoId Int
+  clienteId  Int
+  dataInicio DateTime
+  dataFim    DateTime
+
+  figurino Figurino @relation(fields: [figurinoId], references: [id])
+  cliente  Cliente  @relation(fields: [clienteId], references: [id])
 }
