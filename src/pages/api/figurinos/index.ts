@@ -26,10 +26,10 @@ export default async function handler(
         const { nome, descricao, tamanho, quantidade } = req.body;
         const newFigurino = await prisma.figurino.create({
           data: {
-            nome,
-            descricao,
-            tamanho,
-            quantidade,
+            nome: nome,
+            descricao: descricao,
+            tamanho: tamanho,
+            quantidade: +quantidade,
           },
         });
         res.status(201).json(newFigurino);
