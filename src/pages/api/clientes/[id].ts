@@ -67,6 +67,7 @@ export default async function handler(
         const deleteCliente = await prisma.cliente.delete({
           where: { id: +id },
         });
+        res.status(200).json(deleteCliente);
       } catch (error) {
         res.status(500).json({ error: "Erro ao excluir cliente. " });
       }
