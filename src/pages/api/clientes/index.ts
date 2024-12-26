@@ -1,6 +1,5 @@
 import prisma from "@/database";
 import { NextApiRequest, NextApiResponse } from "next";
-import { deflateRaw } from "zlib";
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,7 +13,7 @@ export default async function handler(
         const cliente = await prisma.cliente.findMany();
         res.status(200).json(cliente);
       } catch (error) {
-        res.status(500).json({ error: "Erro ao listar figurinos" });
+        res.status(500).json({ error: "Erro ao listar clientes" });
       }
       break;
 
@@ -30,7 +29,7 @@ export default async function handler(
         });
         res.status(201).json(newCliente);
       } catch (error) {
-        res.status(500).json({ error: "Erro ao criar figurino" });
+        res.status(500).json({ error: "Erro ao criar cleinte" });
       }
       break;
 
